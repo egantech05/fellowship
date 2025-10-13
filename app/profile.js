@@ -1,12 +1,22 @@
 import { useState } from "react";
-import { StyleSheet, Text, TextInput, View } from "react-native";
+import { useRouter } from "expo-router";
+import { StyleSheet, Text, TextInput, View, TouchableOpacity,} from "react-native";
 
 export default function Profile() {
   const [name, setName] = useState("Your Name");
   const [info, setInfo] = useState("Tell others something about you...");
+  const router = useRouter();
 
   return (
+
     <View style={styles.container}>
+      <TouchableOpacity
+        style={styles.createButton}
+        onPress={() => router.push("/create-card")}
+      >
+        <Text style={styles.createText}>Create My Card</Text>
+      </TouchableOpacity>
+
       <Text style={styles.label}>Name</Text>
       <TextInput style={styles.input} value={name} onChangeText={setName} />
 

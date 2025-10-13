@@ -44,7 +44,7 @@ export default function CardModal({ visible, onClose, card }) {
       <BattleModal
         visible={battleVisible}                // shows the modal only when true
         onClose={() => setBattleVisible(false)} // closes it when "Close" is pressed
-        myStats={{ attack: 6, defense: 4 }}     // your player stats (temporary)
+        myStats={{ attack: 2, defense: 4 }}     // your player stats (temporary)
         enemyCard={{
           name: card.name,                      // the opponent’s name from this card
           attack: Math.floor(Math.random() * 10),  // random opponent attack power
