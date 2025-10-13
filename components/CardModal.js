@@ -6,8 +6,13 @@ import {
   TouchableOpacity,
   Modal,
 } from "react-native";
+import BattleModal from "./BattleModal.js";
+import { useState } from "react";
+
 
 export default function CardModal({ visible, onClose, card }) {
+  const [battleVisible, setBattleVisible] = useState(false);
+
   if (!card) return null;
 
   return (
@@ -21,14 +26,12 @@ export default function CardModal({ visible, onClose, card }) {
         <View style={styles.modalContent}>
           <Text style={styles.title}>{card.name}</Text>
           <Text style={styles.subtitle}>{card.message}</Text>
-          
-
           <View style={styles.buttonRow}>
-            <TouchableOpacity style={styles.addButton} onPress={() => alert("Added to Fellowship!")}>
+            <TouchableOpacity style={styles.addButton} onPress={() => alert("Added to fellowship.")}>
               <Text style={styles.buttonText}>Add to Fellowship</Text>
             </TouchableOpacity>
 
-            <TouchableOpacity style={styles.battleButton} onPress={() => alert("Battle sequence coming soon!")}>
+            <TouchableOpacity style={styles.battleButton} onPress={() => setBattleVisible(true)}>
               <Text style={styles.buttonText}>Battle</Text>
             </TouchableOpacity>
           </View>
@@ -38,6 +41,17 @@ export default function CardModal({ visible, onClose, card }) {
           </TouchableOpacity>
         </View>
       </View>
+      <BattleModal
+        visible={battleVisible}                // shows the modal only when true
+        onClose={() => setBattleVisible(false)} // closes it when "Close" is pressed
+        myStats={{ attack: 6, defense: 4 }}     // your player stats (temporary)
+        enemyCard={{
+          name: card.name,                      // the opponent’s name from this card
+          attack: Math.floor(Math.random() * 10),  // random opponent attack power
+          defense: Math.floor(Math.random() * 10), // random opponent defense
+        }}
+      />
+
     </Modal>
   );
 }
