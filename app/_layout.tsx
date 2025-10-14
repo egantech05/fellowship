@@ -1,10 +1,15 @@
 import { Stack } from "expo-router";
+import { CardProvider } from "../context/CardContext";
+
 
 export default function Layout() {
   return (
-    <Stack screenOptions={{ headerShown: false }}>
-      <Stack.Screen name="index" />
-      <Stack.Screen name="profile" options={{ title: "My Profile" }} />
-    </Stack>
+    <CardProvider>
+      <Stack>
+        <Stack.Screen name="index" options={{ title: "Home" }} />
+        <Stack.Screen name="profile" options={{ title: "Profile" }} />
+      </Stack>
+    </CardProvider>
   );
 }
+

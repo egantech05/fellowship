@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import {
   View,
   Text,
@@ -6,14 +6,16 @@ import {
   TouchableOpacity,
   Modal,
 } from "react-native";
+import { CardContext } from "../context/CardContext";
 
-export default function BattleModal({ visible, onClose, myStats, enemyCard }) {
+export default function BattleModal({ visible, onClose, enemyCard }) {
+  const { card } = useContext(CardContext);
   const [battleResult, setBattleResult] = useState(null);
 
   // Simple battle logic — can get more complex later
   useEffect(() => {
     if (visible && enemyCard) {
-      const myPower = myStats.attack + myStats.defense;
+      const myPower = (card.attack ?? 0) + (card.defense ?? 0);
       const enemyPower = (enemyCard.attack ?? 0) + (enemyCard.defense ?? 0);
       const outcome = Math.random() + myPower / (myPower + enemyPower);
 
@@ -40,7 +42,7 @@ export default function BattleModal({ visible, onClose, myStats, enemyCard }) {
           {enemyCard && (
             <View style={styles.statsBox}>
               <Text style={styles.text}>
-                Your Power: {myStats.attack + myStats.defense}
+                Your Power: {card.attack + card.defense}
               </Text>
               <Text style={styles.text}>
                 {enemyCard.name}'s Power: {(enemyCard.attack ?? 0) + (enemyCard.defense ?? 0)}
