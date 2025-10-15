@@ -1,18 +1,16 @@
-import React, { useState, useEffect } from "react";
+import * as ImagePicker from "expo-image-picker";
+import { useRouter } from "expo-router";
+import React, { useContext, useEffect, useState } from "react";
 import {
-    View,
+    Alert,
+    Image,
+    StyleSheet,
     Text,
     TextInput,
     TouchableOpacity,
-    Image,
-    StyleSheet,
-    SafeAreaView,
-    Alert,
+    View
 } from "react-native";
-import * as ImagePicker from "expo-image-picker";
-import { useContext } from "react";
 import { CardContext } from "../context/CardContext";
-import { useRouter } from "expo-router";
 
 export default function MyCardScreen() {
     const router = useRouter();
@@ -72,7 +70,7 @@ export default function MyCardScreen() {
     };
 
     return (
-        <SafeAreaView style={styles.container}>
+        <View style={styles.container}>
             <Text style={styles.header}>My Card</Text>
 
             {/* Name */}
@@ -132,7 +130,7 @@ export default function MyCardScreen() {
             <TouchableOpacity onPress={() => router.back()} style={styles.cancelButton}>
                 <Text style={styles.cancelText}>Cancel</Text>
             </TouchableOpacity>
-        </SafeAreaView>
+        </View>
     );
 }
 
