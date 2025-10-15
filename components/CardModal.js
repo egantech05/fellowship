@@ -1,13 +1,12 @@
-import React from "react";
+import { useState } from "react";
 import {
-  View,
-  Text,
-  StyleSheet,
-  TouchableOpacity,
   Modal,
+  StyleSheet,
+  Text,
+  TouchableOpacity,
+  View,
 } from "react-native";
 import BattleModal from "./BattleModal.js";
-import { useState } from "react";
 
 
 export default function CardModal({ visible, onClose, card }) {
@@ -49,6 +48,7 @@ export default function CardModal({ visible, onClose, card }) {
           name: card.name,                      // the opponent’s name from this card
           attack: Math.floor(Math.random() * 10),  // random opponent attack power
           defense: Math.floor(Math.random() * 10), // random opponent defense
+          banner: card.banner,                    // pass banner for the image
         }}
       />
 
