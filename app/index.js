@@ -26,7 +26,7 @@ import {
 let BleManager, blePeripheral, Application;
 if (Platform.OS !== "web") {
   BleManager = require("react-native-ble-plx").BleManager;
-  blePeripheral = require("react-native-ble-peripheral");
+  //blePeripheral = require("react-native-ble-peripheral");
   Application = require("expo-application");
 }
 
